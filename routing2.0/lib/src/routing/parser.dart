@@ -16,7 +16,7 @@ class RouterParser extends RouteInformationParser<PageConfiguration> {
     }
 
     final path = uri.pathSegments[0];
-
+    print(path);
     switch ('/${path}') {
       case SettingsPath:
         return settingsPageConfiguration;

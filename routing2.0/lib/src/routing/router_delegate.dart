@@ -117,14 +117,17 @@ class SampleRouterDelegate extends RouterDelegate<PageConfiguration>
   }
 
   /// Eine Seite zur Liste hinzufügen
-  void addPage(PageConfiguration? pageConfig) {
+  void addPage(PageConfiguration? pageConfig, [bool fromSetName = false]) {
     final shouldAddPage = _pages.isEmpty ||
         (_pages.last.arguments as PageConfiguration).uiPage !=
-            (pageConfig?.uiPage ?? Pages.List);
+            (pageConfig?.uiPage ?? Pages.Home);
 
     if (shouldAddPage) {
-      appState.currentConfiguration = pageConfig ?? homePageConfiguration;
-
+      if (fromSetName) {
+        appState.currentAction = PageAction(
+            state: PageState.addPage,
+            page: pageConfig ?? homePageConfiguration);
+      }
       switch (pageConfig?.uiPage) {
         case Pages.Settings:
           _addPageData(
@@ -196,10 +199,12 @@ class SampleRouterDelegate extends RouterDelegate<PageConfiguration>
 
   ///Überschreibt den aktuellen Stack wenn es mehr als eine Route gibt
   Future<void> setNewRoutePath(PageConfiguration configuration) {
-    if (_pages.length > 1) {
+    if (_pages.length > 1 || configuration.uiPage == Pages.Home) {
       _pages.clear();
     }
-    addPage(configuration);
+    appState.currentConfiguration = configuration;
+
+    addPage(configuration, true);
     return SynchronousFuture(null);
   }
 
