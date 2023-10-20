@@ -10,16 +10,11 @@ import 'package:routing_2_0/src/screens/sample_feature/repo/sample.repo.dart';
 import 'package:routing_2_0/src/state/app_state.dart';
 
 /// Displays detailed information about a SampleItem.
-class SampleItemDetailsView extends StatefulWidget {
+class SampleItemDetailsView extends StatelessWidget {
   SampleItemDetailsView({Key? key, int? this.id}) : super(key: key);
 
   int? id;
 
-  @override
-  State<SampleItemDetailsView> createState() => _SampleItemDetailsViewState();
-}
-
-class _SampleItemDetailsViewState extends State<SampleItemDetailsView> {
   late AppState appState;
   @override
   Widget build(BuildContext context) {
@@ -27,8 +22,8 @@ class _SampleItemDetailsViewState extends State<SampleItemDetailsView> {
     SampleItem item;
 
     try {
-      if (widget.id != null) {
-        item = SampleRepo().getWithid(widget.id!);
+      if (id != null) {
+        item = SampleRepo().getWithid(id!);
       } else {
         item = SampleRepo().getWithid(1);
       }

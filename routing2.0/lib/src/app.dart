@@ -39,20 +39,6 @@ class _MyAppState extends State<SampleApp> {
   void initState() {
     super.initState();
     appState.settingsController = widget.settingsController;
-    initPlatformState();
-  }
-
-  // Platform messages are asynchronous, so we initialize in an async method.
-  Future<void> initPlatformState() async {
-    // Attach a listener to the Uri links stream
-    /*_linkSubscription = getUriLinksStream().listen((Uri uri) {
-      if (!mounted) return;
-      setState(() {
-        delegate.parseRoute(uri);
-      });
-    }, onError: (Object err) {
-      print('Got error $err');
-    });*/
   }
 
   @override

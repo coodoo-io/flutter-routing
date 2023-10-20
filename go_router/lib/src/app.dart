@@ -17,10 +17,11 @@ class SampleApp extends StatelessWidget {
   final SettingsController settingsController;
 
   late final _router = GoRouter(
+    initialLocation: '/',
     routes: [
       GoRoute(
         path: '/',
-        redirect: (_) => '/home',
+        redirect: (_, __) => '/home',
       ),
       GoRoute(
         path: '/home',
@@ -33,8 +34,8 @@ class SampleApp extends StatelessWidget {
             path: 'items/:id',
             pageBuilder: (context, state) => FadeTransitionPage(
               key: const ValueKey<String>('detail'),
-              child:
-                  SampleItemDetailsView(id: int.tryParse(state.params['id']!)),
+              child: SampleItemDetailsView(
+                  id: int.tryParse(state.pathParameters['id']!)),
             ),
           ),
           GoRoute(
@@ -66,8 +67,7 @@ class SampleApp extends StatelessWidget {
           theme: ThemeData(),
           darkTheme: ThemeData.dark(),
           themeMode: settingsController.themeMode,
-          routerDelegate: _router.routerDelegate,
-          routeInformationParser: _router.routeInformationParser,
+          routerConfig: _router,
         );
       },
     );

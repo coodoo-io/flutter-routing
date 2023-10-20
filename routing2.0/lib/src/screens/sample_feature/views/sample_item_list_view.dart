@@ -12,17 +12,12 @@ import 'package:routing_2_0/src/screens/settings/settings_view.dart';
 import 'package:routing_2_0/src/state/app_state.dart';
 
 /// Displays a list of SampleItems.
-class SampleItemListView extends StatefulWidget {
+class SampleItemListView extends StatelessWidget {
   SampleItemListView({
     Key? key,
   }) : super(key: key);
-
-  @override
-  State<SampleItemListView> createState() => _SampleItemListViewState();
-}
-
-class _SampleItemListViewState extends State<SampleItemListView> {
   late AppState appState;
+
   @override
   Widget build(BuildContext context) {
     appState = Provider.of<AppState>(context);

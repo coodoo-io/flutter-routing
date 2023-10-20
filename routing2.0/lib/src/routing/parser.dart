@@ -51,7 +51,8 @@ class RouterParser extends RouteInformationParser<PageConfiguration> {
       case Pages.List:
         return RouteInformation(location: ListItemsPath);
       case Pages.Details:
-        return RouteInformation(location: '$DetailsPath/${configuration.id}');
+        return RouteInformation(
+            location: '$DetailsPath/test/${configuration.id}');
       default:
         return RouteInformation(location: HomePath);
     }
